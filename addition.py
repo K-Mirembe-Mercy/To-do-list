@@ -1,0 +1,11 @@
+x = int(input("In which year were you born, please?"))
+y = int(input("Which year is this,please?"))
+w = y-x
+print(w)
+name =input("What is your name?")
+print("Welcome to the game", name)
+print("We can write for you a short article about yourself!")
+origin =input("Where were you born?")
+place =input("Where do you live?")
+educ =input("what is your highest level of education?")
+print("I am", name, "born at", origin, "in the lovely year", x, "today in", y, "I make", w, "years. I live in ", place, "i graduated from", educ, "with flying colors")
