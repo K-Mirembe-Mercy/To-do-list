@@ -1,0 +1,82 @@
+import random
+
+class Bottle:
+    def __init__(self, capacity):
+        self.capacity = capacity
+        self.content = 0
+
+    def fill(self, amount):
+        """Fills the bottle by the given amount, up to its capacity."""
+        self.content = min(self.capacity, self.content + amount)
+
+    def empty(self, amount):
+        """Empties the bottle by the given amount, down to zero."""
+        self.content = max(0, self.content - amount)
+
+    def __str__(self):
+        """String representation for display."""
+        return f"Bottle ({self.content}/{self.capacity})"
+
+def play_game():
+    """Plays the bottle filling game."""
+    print("Welcome to the Bottle Filling Game!")
+
+    # Initialize bottles
+    bottle1 = Bottle(random.randint(3, 7))
+    bottle2 = Bottle(random.randint(3, 7))
+    
+    print(f"You have two bottles: {bottle1} and {bottle2}")
+    
+    target = random.randint(1, max(bottle1.capacity, bottle2.capacity))
+    print(f"The target is to get {target} units of water in either bottle.")
+    
+    while True:
+        print("\nChoose an action:")
+        print("1. Fill bottle 1")
+        print("2. Fill bottle 2")
+        print("3. Empty bottle 1")
+        print("4. Empty bottle 2")
+        print("5. Pour from bottle 1 to bottle 2")
+        print("6. Pour from bottle 2 to bottle 1")
+        print("7. Quit")
+
+        choice = input("Enter your choice (1-7): ")
+
+        if choice == '1':
+            amount = int(input("How much to fill bottle 1? "))
+            bottle1.fill(amount)
+        elif choice == '2':
+            amount = int(input("How much to fill bottle 2? "))
+            bottle2.fill(amount)
+        elif choice == '3':
+            amount = int(input("How much to empty bottle 1? "))
+            bottle1.empty(amount)
+        elif choice == '4':
+            amount = int(input("How much to empty bottle 2? "))
+            bottle2.empty(amount)
+        elif choice == '5':
+            amount = int(input("How much to pour from bottle 1 to bottle 2? "))
+            pour_amount = min(amount, bottle1.content, bottle2.capacity - bottle2.content)
+            bottle1.empty(pour_amount)
+            bottle2.fill(pour_amount)
+        elif choice == '6':
+            amount = int(input("How much to pour from bottle 2 to bottle 1? "))
+            pour_amount = min(amount, bottle2.content, bottle1.capacity - bottle1.content)
+            bottle2.empty(pour_amount)
+            bottle1.fill(pour_amount)
+        elif choice == '7':
+            print("Thanks for playing!")
+            break
+        else:
+            print("Invalid choice. Try again.")
+        
+        print(f"Bottle 1: {bottle1}")
+        print(f"Bottle 2: {bottle2}")
+        
+        if bottle1.content == target or bottle2.content == target:
+            print(f"Congratulations! You reached the target of {target}!")
+            break
+        
+# Start the game
+if __name__ == "__main__":
+    play_game()
