@@ -1,0 +1,68 @@
+import random
+
+def play_game():
+    player_position = 0
+    coins_collected = 0
+    game_over = False
+
+    print("Welcome to the Coin Collector Game!")
+    print("Move left (a) or right (d) to collect coins.")
+    print("Collect 5 coins to win!")
+
+    # Generate initial coin positions
+    coin_positions = set()
+    while len(coin_positions) < 3: # Start with 3 coins
+        coin_positions.add(random.randint(-5, 5))
+
+    while not game_over:
+        print(f"\nYour current position: {player_position}")
+        print(f"Coins collected: {coins_collected}")
+
+        # Display game world (simplified)
+        world_display = ["-"] * 11 # Represents positions from -5 to 5
+        for i in range(-5, 6):
+            if i in coin_positions:
+                world_display[i + 5] = "C" # Coin
+            if i == player_position:
+                world_display[i + 5] = "P" # Player
+        print("".join(world_display))
+
+        action = input("Enter 'a' to move left, 'd' to move right, or 'q' to quit: ").lower()
+
+        if action == 'a':
+            player_position -= 1
+        elif action == 'd':
+            player_position += 1
+        elif action == 'q':
+            game_over = True
+            print("Thanks for playing!")
+            continue
+        else:
+            print("Invalid input. Please try again.")
+            continue
+
+        # Check for boundary conditions
+        if player_position < -5:
+            player_position = -5
+        elif player_position > 5:
+            player_position = 5
+
+        # Check for coin collection
+        if player_position in coin_positions:
+            coins_collected += 1
+            coin_positions.remove(player_position)
+            print("Coin collected!")
+
+            # Generate a new coin after collecting one
+            new_coin_pos = random.randint(-5, 5)
+            while new_coin_pos in coin_positions or new_coin_pos == player_position:
+                new_coin_pos = random.randint(-5, 5)
+            coin_positions.add(new_coin_pos)
+
+        # Win condition
+        if coins_collected >= 5:
+            game_over = True
+            print("\nCongratulations! You collected 5 coins and won the game!")
+
+if __name__ == "__main__":
+    play_game()
