@@ -1,0 +1,6 @@
+# Move the hero to collect gems and defeat enemies
+while True:
+    hero.moveRight()
+    hero.moveUp()
+    if hero.isEnemyNear():
+        hero.attack("ogre")
