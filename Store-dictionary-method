@@ -1,0 +1,17 @@
+# Store a single piece of data in a variable
+product_name = "Laptop"
+product_price = 1200.50
+
+# Store multiple related items in a list
+shopping_list = ["Milk", "Bread", "Eggs"]
+
+# Store key-value pairs in a dictionary
+customer_info = {
+    "name": "Alice",
+    "email": "alice@example.com",
+    "phone": "555-1234"
+}
+
+print(f"Product: {product_name}, Price: ${product_price}")
+print(f"Shopping List: {shopping_list}")
+print(f"Customer Name: {customer_info['name']}")
