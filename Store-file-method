@@ -1,0 +1,21 @@
+# Store data in a plain text file
+data_to_save = "This is some data to be saved."
+with open("my_data.txt", "w") as file:
+    file.write(data_to_save)
+
+# Read data from a plain text file
+with open("my_data.txt", "r") as file:
+    loaded_data = file.read()
+print(f"Loaded from file: {loaded_data}")
+
+# Store structured data using JSON
+import json
+
+my_dict = {"item1": "valueA", "item2": 123}
+with open("my_structured_data.json", "w") as file:
+    json.dump(my_dict, file)
+
+# Load structured data from JSON
+with open("my_structured_data.json", "r") as file:
+    loaded_dict = json.load(file)
+print(f"Loaded from JSON: {loaded_dict}")
