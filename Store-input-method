@@ -1,0 +1,8 @@
+# Get a string from the user
+user_name = input("Enter your name: ")
+
+# Get an integer from the user (and convert it from string)
+user_age_str = input("Enter your age: ")
+user_age = int(user_age_str)
+
+print(f"Hello, {user_name}! You are {user_age} years old.")
