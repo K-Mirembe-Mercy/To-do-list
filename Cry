@@ -1,0 +1,27 @@
+import random
+
+def number_guessing_game():
+    """A simple number guessing game."""
+    number_to_guess = random.randint(1, 10)
+    attempts = 3
+    print("I'm thinking of a number between 1 and 10. Can you guess it?")
+
+    while attempts > 0:
+        try:
+            guess = int(input(f"You have {attempts} attempts left. Enter your guess: "))
+            if guess == number_to_guess:
+                print("Congratulations! You guessed the number!")
+                return
+            elif guess < number_to_guess:
+                print("Too low!")
+            else:
+                print("Too high!")
+            attempts -= 1
+        except ValueError:
+            print("Invalid input. Please enter a whole number.")
+
+    print(f"Oh no! You ran out of attempts. The number was {number_to_guess}.")
+    print("Perhaps next time you'll have better luck...")
+
+if __name__ == "__main__":
+    number_guessing_game()
